@@ -72,6 +72,4 @@ Based on the amazing [Aider](https://github.com/paul-gauthier/aider) project.
 Customized and enhanced by **List AI**.
 
 ---
-<p align="center">
-  <em>Made with ❤️ by List AI</em>
-</p>
+
