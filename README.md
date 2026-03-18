@@ -62,7 +62,7 @@ List-Clown
 ## ⚙️ Configuration
 
 List Clown comes pre-configured for the best experience.
-- **Model**: `list-ai/list-kimi-10M` (OpenRouter/Hunter-Alpha)
+- **Model**: `list-ai/list-kimi-10M` (OpenRouter/list-ai/list-kimi-10M)
 - **Edit Format**: Whole file editing (most reliable)
 - **Theme**: Dark mode optimized
 
