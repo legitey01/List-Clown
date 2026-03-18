@@ -205,8 +205,59 @@ class Coder:
         return new_coder
 
     def get_announcements(self):
+        # Use rich to create a nice banner
+        from rich.console import Console
+        from rich.text import Text
+        from rich.align import Align
+        from rich import box
+        from io import StringIO
+        
+        # Create a console that captures output
+        console = Console(file=StringIO(), force_terminal=True, width=120)
+        
+        # ASCII Art Banner - The one the user liked best
+        # Standard Font style
+        list_ascii = r"""
+  _     ___ ____ _____ 
+ | |   |_ _/ ___|_   _|
+ | |    | |\___ \ | |  
+ | |___ | | ___) || |  
+ |_____|___|____/ |_|  
+"""
+        clown_ascii = r"""
+   ____ _     _____        ___   _ 
+  / ___| |   / _ \ \      / / \ | |
+ | |   | |  | | | \ \ /\ / /|  \| |
+ | |___| |__| |_| |\ V  V / | |\  |
+  \____|_____\___/  \_/\_/  |_| \_|
+"""
+        
+        # Create styled text for the banner
+        banner_text = Text()
+        
+        # Add "LIST" part in Red
+        banner_text.append(list_ascii, style="bold red")
+        
+        # Add "CLOWN" part in Yellow
+        banner_text.append(clown_ascii, style="bold yellow")
+        
+        # Add subtitle
+        subtitle = Text("          Powered by List AI          ", style="dim white italic")
+        
+        # Print to the capturing console
+        # Align left to ensure the ASCII art isn't messed up by center alignment logic
+        # Or just print directly
+        console.print(banner_text)
+        console.print(Align.left(subtitle))
+        console.print() 
+        
+        # Get the string
+        banner_str = console.file.getvalue()
+        
         lines = []
-        lines.append(f"Aider v{__version__}")
+        # Add the banner string directly
+        lines.append(banner_str)
+        lines.append(f"List-Clown v{__version__}")
 
         # Model
         main_model = self.main_model
@@ -217,7 +268,8 @@ class Coder:
         else:
             prefix = "Model"
 
-        output = f"{prefix}: {main_model.name} with {self.edit_format} edit format"
+        display_name = "list-ai/list-kimi-10M" if main_model.name == "openrouter/openrouter/hunter-alpha" else main_model.name
+        output = f"{prefix}: {display_name} with {self.edit_format} edit format"
 
         # Check for thinking token budget
         thinking_tokens = main_model.get_thinking_tokens()

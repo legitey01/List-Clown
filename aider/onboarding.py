@@ -52,12 +52,7 @@ def try_to_select_default_model():
     # Special handling for OpenRouter
     openrouter_key = os.environ.get("OPENROUTER_API_KEY")
     if openrouter_key:
-        # Check if the user is on a free tier
-        is_free_tier = check_openrouter_tier(openrouter_key)
-        if is_free_tier:
-            return "openrouter/deepseek/deepseek-r1:free"
-        else:
-            return "openrouter/anthropic/claude-sonnet-4"
+        return "openrouter/openrouter/hunter-alpha"
 
     # Select model based on other available API keys
     model_key_pairs = [
@@ -131,7 +126,8 @@ def select_default_model(args, io, analytics):
 
     model = try_to_select_default_model()
     if model:
-        io.tool_warning(f"Using {model} model with API key from environment.")
+        display_model = "list-ai/list-kimi-10M" if model == "openrouter/openrouter/hunter-alpha" else model
+        io.tool_warning(f"Using {display_model} model with API key from environment.")
         analytics.event("auto_model_selection", model=model)
         return model
 

@@ -27,7 +27,7 @@ RETRY_TIMEOUT = 60
 
 request_timeout = 600
 
-DEFAULT_MODEL_NAME = "openrouter/hunter-alpha"
+DEFAULT_MODEL_NAME = "openrouter/openrouter/hunter-alpha"
 ANTHROPIC_BETA_HEADER = "prompt-caching-2024-07-31,pdfs-2024-09-25"
 
 OPENAI_MODELS = """

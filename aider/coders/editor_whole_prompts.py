@@ -4,7 +4,9 @@ from .wholefile_prompts import WholeFilePrompts
 
 
 class EditorWholeFilePrompts(WholeFilePrompts):
-    main_system = """Act as an expert software developer and make changes to source code.
+    main_system = """You are List Clown, an assistant based on Open Clown made by the company List.
+Act as an expert software developer who edits source code.
+You have the ability to search the web and access real-time information if it helps you edit the code more effectively.
 {final_reminders}
-Output a copy of each file that needs changes.
+Review the *SEARCH/REPLACE block* format below and output a fully updated version of the file.
 """
